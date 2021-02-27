@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands;
+
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
@@ -15,16 +16,9 @@ public class AutonomousDistance extends SequentialCommandGroup {
    */
   public AutonomousDistance(Drivetrain drivetrain) {
     addCommands(
-        new DriveDistance(0.7, 16, drivetrain),
-        new DriveDistance(0.7, -16, drivetrain));
-       /* 
-        new TurnDegrees(-0.5, 80, drivetrain),
-        new DriveDistance(0.7, 16, drivetrain),
-        new TurnDegrees(-0.5, 95, drivetrain),
-        new DriveDistance(0.7, 25, drivetrain),
-        new TurnDegrees(0.5, 105, drivetrain),
-        new DriveDistance(0.7, 16, drivetrain),
-        new TurnDegrees(0.5, 85, drivetrain),
-        new DriveDistance(0.7, 16, drivetrain));*/
+        new DriveDistance(-0.5, 10, drivetrain),
+        new TurnDegrees(-0.5, 180, drivetrain),
+        new DriveDistance(-0.5, 10, drivetrain),
+        new TurnDegrees(0.5, 180, drivetrain));
   }
 }

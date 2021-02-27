@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-  //private Command m_arcadeDriveCommand;
   private RobotContainer m_robotContainer;
 
   /**
@@ -59,11 +58,9 @@ public class Robot extends TimedRobot {
 
     // Get selected routine from the SmartDashboard
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-    //m_arcadeDriveCommand = m_robotContainer.getArcadeDriveCommand();
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
-      //m_arcadeDriveCommand.cancel();
       m_autonomousCommand.schedule();
     }
   }
@@ -80,7 +77,6 @@ public class Robot extends TimedRobot {
     // this line or comment it out.
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
-      //m_arcadeDriveCommand.schedule();
     }
   }
 
