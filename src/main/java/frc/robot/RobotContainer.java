@@ -29,6 +29,7 @@ import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
+import edu.wpi.first.wpilibj.util.Units;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
@@ -101,10 +102,10 @@ public class RobotContainer {
         // Start at the origin facing the +X direction
         new Pose2d(0, 0, new Rotation2d(0)),
         List.of(
-            new Translation2d(.4, 0),
-            new Translation2d(0.4, 0.4),
-            new Translation2d(-0.15, 0.23),
-            new Translation2d(-0.053, 0.72)
+            new Translation2d(Units.inchesToMeters(6.5), 0),
+            new Translation2d(Units.inchesToMeters(16), Units.inchesToMeters(6.5)),
+            new Translation2d(Units.inchesToMeters(16), Units.inchesToMeters(17)),
+            new Translation2d(Units.inchesToMeters(-8), Units.inchesToMeters(9))
          
         ),
         new Pose2d(0.49, 0.55, new Rotation2d(0)),
@@ -175,8 +176,43 @@ public class RobotContainer {
    *
    * @return the command to run in teleop
    */
+  
   public Command getArcadeDriveCommand() {
+    //double sccelerator = (((m_controller.getRawAxis(4) * 1.25) + 1) * 0.5);
+    //double turning = m_controller.getRawAxis(0) * (4/3);
+
     return new ArcadeDrive(
-        m_drivetrain, () -> -m_controller.getRawAxis(1), () -> m_controller.getRawAxis(2));
+      m_drivetrain,
+      () -> normalizeTriggerWithDeadband(m_controller.getRawAxis(4), 0.1) - normalizeTriggerWithDeadband(m_controller.getRawAxis(3), 0.1),
+      () -> noramlizeSteering(m_controller.getRawAxis(0))
+    );
+    
+  }
+    //if (rawInput > deadband) {
+    // rawInput = rawInput 
+   // } else {
+     // rawInput = 0;
+   //}
+  public static double normalizeTriggerWithDeadband(double rawInput, double deadband) {
+    final double offset = 0.82;
+    deadband = Math.abs(deadband);
+    double retVal = 0;
+    rawInput += offset;
+    rawInput = Math.abs(rawInput) > deadband ? rawInput : 0;
+
+    if (rawInput != 0) {
+      retVal = Math.signum(rawInput) * (Math.abs(rawInput) - deadband) / ((offset*2) - deadband);
+    }
+  
+    return retVal;
+  }
+
+  public static double noramlizeSteering(double rawStick)
+  {
+    double finVal = 0;
+    if (rawStick != 0){
+    finVal = rawStick * (1.5);
+    }
+    return finVal;
   }
 }
