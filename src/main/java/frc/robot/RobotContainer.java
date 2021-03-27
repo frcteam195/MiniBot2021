@@ -102,6 +102,7 @@ public class RobotContainer {
         // Start at the origin facing the +X direction
         new Pose2d(0, 0, new Rotation2d(0)),
         List.of(
+
            /* new Translation2d((13),(0)),
             new  Translation2d((18),(16)),
             new Translation2d((30),(16)),
@@ -132,6 +133,7 @@ new Pose2d(((1.46)), (.35), new Rotation2d(0)),
 config);
         
         
+
 
     RamseteCommand ramseteCommand = new RamseteCommand(
         exampleTrajectory,
@@ -198,8 +200,43 @@ config);
    *
    * @return the command to run in teleop
    */
+  
   public Command getArcadeDriveCommand() {
+    //double sccelerator = (((m_controller.getRawAxis(4) * 1.25) + 1) * 0.5);
+    //double turning = m_controller.getRawAxis(0) * (4/3);
+
     return new ArcadeDrive(
-        m_drivetrain, () -> -m_controller.getRawAxis(1), () -> m_controller.getRawAxis(2));
+      m_drivetrain,
+      () -> normalizeTriggerWithDeadband(m_controller.getRawAxis(4), 0.1) - normalizeTriggerWithDeadband(m_controller.getRawAxis(3), 0.1),
+      () -> noramlizeSteering(m_controller.getRawAxis(0))
+    );
+    
+  }
+    //if (rawInput > deadband) {
+    // rawInput = rawInput 
+   // } else {
+     // rawInput = 0;
+   //}
+  public static double normalizeTriggerWithDeadband(double rawInput, double deadband) {
+    final double offset = 0.82;
+    deadband = Math.abs(deadband);
+    double retVal = 0;
+    rawInput += offset;
+    rawInput = Math.abs(rawInput) > deadband ? rawInput : 0;
+
+    if (rawInput != 0) {
+      retVal = Math.signum(rawInput) * (Math.abs(rawInput) - deadband) / ((offset*2) - deadband);
+    }
+  
+    return retVal;
+  }
+
+  public static double noramlizeSteering(double rawStick)
+  {
+    double finVal = 0;
+    if (rawStick != 0){
+    finVal = rawStick * (1.5);
+    }
+    return finVal;
   }
 }
