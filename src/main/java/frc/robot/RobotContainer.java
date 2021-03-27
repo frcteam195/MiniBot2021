@@ -97,19 +97,43 @@ public class RobotContainer {
     // This trajectory can be modified to suit your purposes
     // Note that all coordinates are in meters, and follow NWU conventions.
     // If you would like to specify coordinates in inches (which might be easier
-    // to deal with for the Romi), you can use the Units.inchesToMeters() method
+    // to deal with for the Romi), you can use the () method
     Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
         // Start at the origin facing the +X direction
         new Pose2d(0, 0, new Rotation2d(0)),
         List.of(
-            new Translation2d(Units.inchesToMeters(6.5), 0),
-            new Translation2d(Units.inchesToMeters(16), Units.inchesToMeters(6.5)),
-            new Translation2d(Units.inchesToMeters(16), Units.inchesToMeters(17)),
-            new Translation2d(Units.inchesToMeters(-8), Units.inchesToMeters(9))
-         
-        ),
-        new Pose2d(0.49, 0.55, new Rotation2d(0)),
-        config);
+
+           /* new Translation2d((13),(0)),
+            new  Translation2d((18),(16)),
+            new Translation2d((30),(16)),
+            new Translation2d((40),(16)),
+            new Translation2d((50),(16)),
+            new Translation2d((60),(16)),
+            new Translation2d((63),(114)),
+            new Translation2d((69),(0)),
+            new Translation2d((71),(14)),   this is inches
+            new Translation2d((60),(10))
+*/
+new Translation2d((0.3302),(0)),
+new  Translation2d((0.4),(0.4)),
+new Translation2d((0.76),(0.4)),
+new Translation2d((1),(0.32)),
+new Translation2d((1.5),(0.26))
+//new Translation2d((1.46),(.35)),
+//new Translation2d((1.46),(0)),
+//new Translation2d((1.8),(.1))
+//new Translation2d((1.8),(0.35))
+//new Translation2d((1.6),(0.38))
+//new Translation2d((1.5),(0)),
+//new Translation2d((.6),(0)),
+//new Translation2d((.34),(0)),
+//new Translation2d((.34),(.3))
+),
+new Pose2d(((1.46)), (.35), new Rotation2d(0)),
+config);
+        
+        
+
 
     RamseteCommand ramseteCommand = new RamseteCommand(
         exampleTrajectory,

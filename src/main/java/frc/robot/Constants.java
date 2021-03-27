@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 public final class Constants {
   public static final class DriveConstants {
     public static final double ksVolts = 0.929;
-    public static final double kvVoltSecondsPerMeter = 6.33;
+    public static final double kvVoltSecondsPerMeter = 6.33;//6.33
     public static final double kaVoltSecondsSquaredPerMeter = 0.0389;
 
     public static final double kPDriveVel = 0.085;
@@ -30,7 +30,7 @@ public final class Constants {
   }
 
   public static final class AutoConstants {
-    public static final double kMaxSpeedMetersPerSecond = 0.8;
+    public static final double kMaxSpeedMetersPerSecond = .8;  //.8
     public static final double kMaxAccelerationMetersPerSecondSquared = 0.8;
 
     // Reasonable baseline values for a RAMSETE follower in units of meters and seconds
