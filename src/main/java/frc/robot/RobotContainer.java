@@ -194,6 +194,7 @@ public class RobotContainer {
     Trajectory exampleTrajectory = exampleTrajectory1;
 
 
+
     RamseteCommand ramseteCommand = new RamseteCommand(
         exampleTrajectory,
         m_drivetrain::getPose,
@@ -259,9 +260,14 @@ public class RobotContainer {
    *
    * @return the command to run in teleop
    */
+  
   public Command getArcadeDriveCommand() {
     //double sccelerator = (((m_controller.getRawAxis(4) * 1.25) + 1) * 0.5);
     //double turning = m_controller.getRawAxis(0) * (4/3);
+<<<<<<< HEAD
+=======
+
+>>>>>>> ce10d323e624fff537ef6da4658658ce8c5341a4
     return new ArcadeDrive(
       m_drivetrain,
       () -> normalizeTriggerWithDeadband(m_controller.getRawAxis(4), 0.1) - normalizeTriggerWithDeadband(m_controller.getRawAxis(3), 0.1),
@@ -280,12 +286,20 @@ public class RobotContainer {
     double retVal = 0;
     rawInput += offset;
     rawInput = Math.abs(rawInput) > deadband ? rawInput : 0;
+<<<<<<< HEAD
+=======
+
+>>>>>>> ce10d323e624fff537ef6da4658658ce8c5341a4
     if (rawInput != 0) {
       retVal = Math.signum(rawInput) * (Math.abs(rawInput) - deadband) / ((offset*2) - deadband);
     }
   
     return retVal;
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> ce10d323e624fff537ef6da4658658ce8c5341a4
   public static double noramlizeSteering(double rawStick)
   {
     double finVal = 0;
