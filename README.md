@@ -4,7 +4,7 @@ Autonomous Control
 
 Modified program to include trajectories for both Course 1 and Course 2.  
 Added additional trajectory call to assign which trajectory will be called during autonomous.  
-This change allowed us the flexibility to retain both course and to run different autonomous courses by changing one line of code.
+This change allowed us the flexibility to retain trajectories for both courses and to run different autonomous courses by changing one line of code.
 
 Teleop Control
 
