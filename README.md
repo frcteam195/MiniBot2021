@@ -8,7 +8,7 @@ This change allowed us the flexibility to retain trajectories for both courses a
 
 Teleop Control
 
-Modified program to work with a GameCube controller
-Separated acceleration from steering control
-Normalized the trigger (acceleration) control while removing any deadband that existed within the trigger
+Modified program to work with a GameCube controller.
+Separated acceleration from steering control.
+Normalized the trigger (acceleration) control while removing any deadband that existed within the trigger.
 Normalized the steering control to increase steering to full range for the Romi Robot (controller previously had a range of -.75 to .75)
