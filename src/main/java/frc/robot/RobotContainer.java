@@ -101,46 +101,13 @@ public class RobotContainer {
 
     
     //******************* START COURSE 2 *********************
-   
-      //Course 2
      
       Trajectory exampleTrajectory2 = TrajectoryGenerator.generateTrajectory(
         // Start at the origin facing the +X direction
         new Pose2d(0, 0, new Rotation2d(0)),
         List.of(
 
-           /* new Translation2d((13),(0)),
-            new  Translation2d((18),(16)),
-            new Translation2d((30),(16)),
-            new Translation2d((40),(16)),
-            new Translation2d((50),(16)),
-            new Translation2d((60),(16)),
-            new Translation2d((63),(114)),
-            new Translation2d((69),(0)),
-            new Translation2d((71),(14)),   this is inches
-              new Translation2d((60),(10))
-            */
-            /*new Translation2d((0.3302),(0)),  .8 speed  
-            new  Translation2d((0.4),(0.3)),
-            new Translation2d((0.76),(0.3)),
-            new Translation2d((1),(0.28)),
-            new Translation2d((1.5),(0.26)),
-
-            new Translation2d((1.5),(0)),
-            new Translation2d((1.8),(.1)),
-            new Translation2d((1.9),(0.35)),
-            new Translation2d((1.6),(0.36)),
-            new Translation2d((1.53),(.26)),
-            new Translation2d((1.46),(.1)),
-            new Translation2d((.6),(.2)),
-            new Translation2d((.3),(.22)),
-            new Translation2d((.3),(.24)),
-            new Translation2d((.3),(.3)),
-            new Translation2d((.3),(.35)),
-            new Translation2d((.3),(.4)),
-            new Translation2d((.28),(.45))*/
-
-            new Translation2d((0.3302),(0)), //1
+            new Translation2d((0.3302),(0)), 
             new  Translation2d((0.4),(0.25)),
             new Translation2d((0.76),(0.24)),
             new Translation2d((1),(0.23)),
@@ -168,8 +135,6 @@ public class RobotContainer {
   
 
     //******************* START COURSE 1 *********************
-   
-    //Course 1
     
     Trajectory exampleTrajectory1 = TrajectoryGenerator.generateTrajectory(
        // Start at the origin facing the +X direction
@@ -179,19 +144,25 @@ public class RobotContainer {
          new Translation2d((.78),(-.35)),  // changed from .4
          new Translation2d((.7),(-.4)),
          new Translation2d((.5),(0)),
-         new Translation2d((1),(-.2)),
-         new Translation2d((1.3),(.7)),
-         new Translation2d((1),(.9)),
-         new Translation2d((.2),(0)),
-         new Translation2d((-.5),(-.6))
+         new Translation2d((1),(0)),
+         new Translation2d((1.3),(0)),
+         new Translation2d((1.5),(0)),
+         new Translation2d((1.55),(.4)),    
+         new Translation2d((1.55),(.5)),
+         new Translation2d((1),(.3)),
+         new Translation2d((1),(-.3)),
+         new Translation2d((1.3),(0)),
+         new Translation2d((1.9),(.1)),
+         new Translation2d((1.8),(.3))
+         //new Translation2d((.5),(-.6))
         ),
-      new Pose2d(((.4)), (-.4), new Rotation2d(Math.PI/1)),
+      new Pose2d(((0)), (-.6), new Rotation2d(Math.PI/1)),
       config);
     
     //******************* END COURSE 1 *********************
 
-
-    Trajectory exampleTrajectory = exampleTrajectory1;
+    // Set Trejectory to Use for Autonomous Run
+    Trajectory exampleTrajectory = exampleTrajectory2;
 
 
     RamseteCommand ramseteCommand = new RamseteCommand(
@@ -259,6 +230,10 @@ public class RobotContainer {
    *
    * @return the command to run in teleop
    */
+
+  // Modified getArcadeDriveCommand to work with GameCube controller
+  // - separated acceleration from steering control
+  // - normalized the steering and trigger (acceleration) control
   public Command getArcadeDriveCommand() {
     //double sccelerator = (((m_controller.getRawAxis(4) * 1.25) + 1) * 0.5);
     //double turning = m_controller.getRawAxis(0) * (4/3);
